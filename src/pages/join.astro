@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const fields = [
+  { id: 'EE',  zh: '電機工程',     en: 'Electrical Engineering'   },
+  { id: 'CS',  zh: '資訊工程',     en: 'Computer Science'         },
+  { id: 'ME',  zh: '機械工程',     en: 'Mechanical Engineering'   },
+  { id: 'AE',  zh: '航空工程',     en: 'Aerospace Engineering'    },
+  { id: 'CE',  zh: '控制工程',     en: 'Control Engineering'      },
+  { id: 'AI',  zh: '人工智慧',     en: 'AI / Machine Learning'    },
+  { id: 'EMB', zh: '嵌入式系統',   en: 'Embedded Systems'         },
+  { id: 'COM', zh: '無線通訊',     en: 'Wireless Communications'  },
+];
+---
+
+<BaseLayout
+  title="加入我們"
+  description="加入亞東科技大學無人機研究社 — 研究生與大學生皆歡迎申請。YEAR 01 · EST. 2026"
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">JOIN · YEAR 01</p>
+      <h1 class="page-header__title">加入我們</h1>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       JOIN THE TEAM
+       ===================================================== -->
+  <section class="section border-bottom" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="content-block">
+
+        <span class="eyebrow">JOIN THE TEAM</span>
+        <h2 class="content-block__heading">我們在找誰</h2>
+
+        <div class="content-block__body">
+          <p>
+            我們歡迎對無人機工程與研究有興趣的研究生與大學生加入。
+            不論你的科系背景，只要對技術有熱情、願意動手實作，都有位置。
+          </p>
+          <p>
+            現在是 YEAR 01。你加入的話，你就是第一屆的成員。
+          </p>
+        </div>
+
+        <div class="join-badges">
+          <span class="tag tag--default">研究生 歡迎</span>
+          <span class="tag tag--default">大學生 歡迎</span>
+          <span class="tag tag--default">跨科系</span>
+          <span class="tag tag--year01">YEAR 01</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FIELDS & SKILLS
+       ===================================================== -->
+  <section class="section border-bottom">
+    <div class="container">
+
+      <span class="eyebrow">FIELDS &amp; SKILLS</span>
+      <h2 class="section-title">相關領域與技能</h2>
+
+      <ul class="fields-list" role="list">
+        {fields.map((f) => (
+          <li class="field-row">
+            <span class="field-row__id">{f.id}</span>
+            <span class="field-row__zh">{f.zh}</span>
+            <span class="field-row__en">{f.en}</span>
+          </li>
+        ))}
+      </ul>
+
+      <p class="fields-note">
+        以上為常見相關背景，並非硬性要求。
+        對無人機技術有興趣且願意學習者皆可聯繫。
+      </p>
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CONTACT
+       ===================================================== -->
+  <section class="section" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="content-block">
+
+        <span class="eyebrow">CONTACT</span>
+        <h2 class="content-block__heading">聯絡我們</h2>
+
+        <div class="content-block__body">
+          <p>
+            有意加入或想了解更多，請透過以下管道聯繫。
+          </p>
+        </div>
+
+        <!-- Contact links — placeholders until real info is provided -->
+        <ul class="contact-list" role="list">
+          <li class="contact-item">
+            <span class="contact-item__platform">GitHub</span>
+            <span class="contact-item__value contact-item__value--pending">CONTACT / DATA PENDING</span>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__platform">Instagram</span>
+            <span class="contact-item__value contact-item__value--pending">CONTACT / DATA PENDING</span>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__platform">LINE</span>
+            <span class="contact-item__value contact-item__value--pending">CONTACT / DATA PENDING</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .border-bottom { border-bottom: 1px solid var(--color-border); }
+
+  /* ---- Page header ---- */
+  .page-header {
+    padding-block: var(--space-12) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .page-header__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  /* ---- Content block ---- */
+  .content-block {
+    max-width: 600px;
+  }
+
+  .content-block__heading {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-2);
+  }
+
+  .content-block__body p {
+    font-size: var(--text-md);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-4);
+  }
+
+  .content-block__body p:last-child { margin-bottom: 0; }
+
+  .join-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+
+  /* ---- Fields ---- */
+  .section-title {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-8);
+  }
+
+  .fields-list {
+    list-style: none;
+    margin: 0 0 var(--space-6) 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 1fr;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .field-row__id {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-accent);
+  }
+
+  .field-row__zh {
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    font-weight: var(--weight-medium);
+  }
+
+  .field-row__en {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+  }
+
+  .fields-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 639px) {
+    .field-row {
+      grid-template-columns: 48px 1fr;
+    }
+    .field-row__en { display: none; }
+  }
+
+  /* ---- Contact list ---- */
+  .contact-list {
+    list-style: none;
+    margin: var(--space-8) 0 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .contact-item__platform {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+    min-width: 80px;
+  }
+
+  .contact-item__value {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  a.contact-item__value:hover { color: var(--color-accent); }
+
+  .contact-item__value--pending {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,398 @@
+---
+/**
+ * Footer.astro
+ * Site footer with EST. 2026 / YEAR 01 identity,
+ * social links placeholder, and nav links.
+ */
+
+interface FooterLink {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+const navColumns: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: '關於',
+    links: [
+      { href: '/about',      label: '關於我們' },
+      { href: '/teams',      label: '成員'     },
+      { href: '/contact',    label: '聯絡我們' },
+    ],
+  },
+  {
+    heading: '研究',
+    links: [
+      { href: '/projects',   label: '專題計畫' },
+      { href: '/activities', label: '活動紀錄' },
+    ],
+  },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+
+  <!-- Divider rule with identity mark -->
+  <div class="footer__divider container">
+    <div class="footer__divider-rule">
+      <span class="footer__divider-mark label-mono" aria-hidden="true">▲ AEUST DRONE RESEARCH TEAM</span>
+    </div>
+  </div>
+
+  <!-- Main footer body -->
+  <div class="footer__body container">
+    <div class="footer__grid">
+
+      <!-- Identity column -->
+      <div class="footer__identity">
+        <div class="footer__brand">
+          <span class="footer__brand-mark" aria-hidden="true">▲</span>
+          <div class="footer__brand-text">
+            <span class="footer__brand-zh">亞東科技大學</span>
+            <span class="footer__brand-zh">無人機研究社</span>
+          </div>
+        </div>
+        <p class="footer__tagline">
+          跨年級 × 跨領域<br />研究導向的無人機團隊
+        </p>
+        <div class="footer__identity-badges" aria-label="團隊識別標記">
+          <span class="tag tag--year01">YEAR 01</span>
+          <span class="tag tag--default">EST. 2026</span>
+          <span class="tag tag--default">CYCLE 01</span>
+        </div>
+      </div>
+
+      <!-- Navigation columns -->
+      {navColumns.map((col) => (
+        <div class="footer__nav-col">
+          <h3 class="footer__nav-heading label-mono">{col.heading}</h3>
+          <ul class="footer__nav-list list-none" role="list">
+            {col.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="footer__nav-link"
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  target={link.external ? '_blank' : undefined}
+                >
+                  {link.label}
+                  {link.external && (
+                    <span class="sr-only">（外部連結）</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <!-- Social / contact column -->
+      <div class="footer__nav-col">
+        <h3 class="footer__nav-heading label-mono">連結</h3>
+        <ul class="footer__nav-list list-none" role="list">
+          <li>
+            <a href="https://github.com" class="footer__nav-link footer__social-link" rel="noopener noreferrer" target="_blank">
+              <span class="footer__social-icon" aria-hidden="true">GH</span>
+              GitHub
+              <span class="sr-only">（外部連結）</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer__nav-link footer__social-link">
+              <span class="footer__social-icon" aria-hidden="true">IG</span>
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer__nav-link footer__social-link">
+              <span class="footer__social-icon" aria-hidden="true">LN</span>
+              LINE 社群
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="footer__bottom-inner">
+
+        <p class="footer__copyright">
+          © {currentYear} 亞東科技大學無人機研究社
+        </p>
+
+        <!-- Telemetry-style engineering identity readout -->
+        <div class="footer__telemetry" aria-hidden="true">
+          <span class="footer__telemetry-item">
+            <span class="footer__telemetry-key">TEAM</span>
+            <span class="footer__telemetry-sep">/</span>
+            <span class="footer__telemetry-val">AEUST-DRT</span>
+          </span>
+          <span class="footer__telemetry-dot" aria-hidden="true">·</span>
+          <span class="footer__telemetry-item">
+            <span class="footer__telemetry-key">FOUNDED</span>
+            <span class="footer__telemetry-sep">/</span>
+            <span class="footer__telemetry-val">2026</span>
+          </span>
+          <span class="footer__telemetry-dot" aria-hidden="true">·</span>
+          <span class="footer__telemetry-item">
+            <span class="footer__telemetry-key">CYCLE</span>
+            <span class="footer__telemetry-sep">/</span>
+            <span class="footer__telemetry-val">01</span>
+          </span>
+          <span class="footer__telemetry-dot" aria-hidden="true">·</span>
+          <span class="footer__telemetry-item">
+            <span class="footer__telemetry-key">STATUS</span>
+            <span class="footer__telemetry-sep">/</span>
+            <span class="footer__telemetry-val">ACTIVE</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-surface);
+    border-top: var(--border-width) solid var(--color-border);
+    margin-top: auto;
+  }
+
+  /* ---- Top divider ---- */
+  .footer__divider {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+
+  .footer__divider-rule {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .footer__divider-rule::before {
+    content: '';
+    display: block;
+    flex: 1;
+    height: var(--border-width);
+    background-color: var(--color-border-light);
+  }
+
+  .footer__divider-rule::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: var(--border-width);
+    background-color: var(--color-border-light);
+  }
+
+  .footer__divider-mark {
+    font-size: 0.65rem;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ---- Body / grid ---- */
+  .footer__body {
+    padding-bottom: var(--space-10);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  @media (max-width: 1023px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer__identity {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+    .footer__identity {
+      grid-column: span 1;
+    }
+  }
+
+  /* ---- Identity column ---- */
+  .footer__brand {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer__brand-mark {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    line-height: 1.2;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .footer__brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__brand-zh {
+    font-family: var(--font-sans);
+    font-size: var(--text-md);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    line-height: 1.3;
+  }
+
+  .footer__tagline {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-4);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .footer__identity-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  /* ---- Nav columns ---- */
+  .footer__nav-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .footer__nav-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .footer__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__nav-link {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .footer__nav-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* ---- Social links ---- */
+  .footer__social-icon {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+    border: var(--border-width) solid var(--color-border);
+    padding: 0.1em 0.35em;
+    border-radius: var(--radius-sm);
+    line-height: 1.5;
+  }
+
+  /* ---- Bottom bar ---- */
+  .footer__bottom {
+    border-top: var(--border-width) solid var(--color-border-light);
+    background-color: var(--color-surface-alt);
+    padding-block: var(--space-4);
+  }
+
+  .footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .footer__copyright {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* ---- Telemetry readout ---- */
+  .footer__telemetry {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .footer__telemetry-item {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: var(--tracking-wide);
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  .footer__telemetry-key {
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+  }
+
+  .footer__telemetry-sep {
+    color: var(--color-border-dark);
+  }
+
+  .footer__telemetry-val {
+    color: var(--color-accent);
+  }
+
+  .footer__telemetry-dot {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-border-dark);
+    line-height: 1;
+  }
+
+  @media (max-width: 639px) {
+    .footer__bottom-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer__telemetry {
+      display: none;
+    }
+  }
+</style>

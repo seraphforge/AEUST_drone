@@ -1,0 +1,195 @@
+/* ============================================================
+   AEUST Drone Research Team — Design Tokens
+   EST. 2026 · YEAR 01 · CYCLE 01
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     COLOR — Cool engineering palette, light background
+     ---------------------------------------------------------- */
+
+  /* Backgrounds */
+  --color-bg:           #F4F6F8;   /* page background — off-white */
+  --color-surface:      #FFFFFF;   /* cards, panels */
+  --color-surface-alt:  #EDF0F4;   /* alternate section bg */
+  --color-surface-code: #1C2333;   /* code / mono blocks */
+
+  /* Borders & grid lines */
+  --color-border:       #C8D0DC;
+  --color-border-light: #E2E7EE;
+  --color-border-dark:  #A0AABB;
+
+  /* Primary — deep navy */
+  --color-primary:      #1A3A5C;
+  --color-primary-dark: #112744;
+  --color-primary-light:#2A5080;
+
+  /* Accent — engineering blue */
+  --color-accent:       #0066CC;
+  --color-accent-hover: #004FA3;
+  --color-accent-light: #E6F0FB;
+
+  /* Signal red — used sparingly: status tags, CTAs */
+  --color-signal:       #C8392B;
+  --color-signal-light: #FCF0EE;
+
+  /* Amber — in-progress / warning */
+  --color-amber:        #B85C00;
+  --color-amber-light:  #FFF3E0;
+
+  /* Success */
+  --color-success:      #1A6636;
+  --color-success-light:#E6F4EB;
+
+  /* Text */
+  --color-text-primary:   #1C1C1E;
+  --color-text-secondary: #4A5568;
+  --color-text-muted:     #7A8798;
+  --color-text-disabled:  #A8B3C0;
+  --color-text-inverse:   #F4F6F8;
+  --color-text-on-primary:#FFFFFF;
+  --color-text-on-accent: #FFFFFF;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------------------------- */
+
+  /* Font families */
+  --font-sans:    'Noto Sans TC', 'Inter', system-ui, sans-serif;
+  --font-latin:   'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Type scale — strict modular, 1.25 ratio base 16 */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   2rem;       /* 32px */
+  --text-3xl:   2.5rem;     /* 40px */
+  --text-4xl:   3.5rem;     /* 56px */
+
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* Line heights */
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.05em;
+  --tracking-wider:   0.1em;
+  --tracking-widest:  0.2em;
+
+  /* ----------------------------------------------------------
+     SPACING — 8px base grid
+     ---------------------------------------------------------- */
+
+  --space-1:  0.25rem;   /* 4px  */
+  --space-2:  0.5rem;    /* 8px  */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+
+  /* ----------------------------------------------------------
+     LAYOUT
+     ---------------------------------------------------------- */
+
+  --max-width:        1280px;
+  --max-width-narrow: 860px;
+  --max-width-wide:   1440px;
+
+  --gutter:        1.5rem;   /* 24px column gutter */
+  --margin-mobile: 1.25rem;  /* 20px side margin on mobile */
+  --margin-tablet: 2rem;     /* 32px side margin on tablet */
+  --margin-desktop:3rem;     /* 48px side margin on desktop */
+
+  --grid-cols: 12;
+
+  /* ----------------------------------------------------------
+     RADIUS
+     ---------------------------------------------------------- */
+
+  --radius-none: 0;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-lg:   8px;
+  --radius-full: 9999px;
+
+  /* ----------------------------------------------------------
+     BORDERS
+     ---------------------------------------------------------- */
+
+  --border-width:       1px;
+  --border-width-thick: 2px;
+
+  /* ----------------------------------------------------------
+     SHADOWS — minimal, engineering aesthetic
+     ---------------------------------------------------------- */
+
+  --shadow-none:  none;
+  --shadow-sm:    0 1px 3px rgba(26, 58, 92, 0.08);
+  --shadow-md:    0 4px 12px rgba(26, 58, 92, 0.10);
+  --shadow-lg:    0 8px 24px rgba(26, 58, 92, 0.12);
+
+  /* ----------------------------------------------------------
+     TRANSITIONS
+     ---------------------------------------------------------- */
+
+  --transition-fast:   100ms ease;
+  --transition-base:   180ms ease;
+  --transition-slow:   300ms ease;
+
+  /* ----------------------------------------------------------
+     Z-INDEX
+     ---------------------------------------------------------- */
+
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-nav:     200;
+  --z-modal:   300;
+  --z-toast:   400;
+
+  /* ----------------------------------------------------------
+     ENGINEERING IDENTITY TOKENS
+     ---------------------------------------------------------- */
+
+  --identity-year:       'YEAR 01';
+  --identity-est:        'EST. 2026';
+  --identity-cycle:      'CYCLE 01';
+
+  /* Dot-grid background pattern */
+  --pattern-dot-color:   rgba(26, 58, 92, 0.06);
+  --pattern-dot-size:    1.5px;
+  --pattern-dot-spacing: 24px;
+
+  /* Cross-hatch background pattern */
+  --pattern-hatch-color: rgba(26, 58, 92, 0.04);
+
+  /* Telemetry bar */
+  --telemetry-bg:        #EDF0F4;
+  --telemetry-text:      var(--color-text-muted);
+  --telemetry-border:    var(--color-border);
+
+  /* Component: corner-bracket card accent */
+  --bracket-color:       var(--color-accent);
+  --bracket-size:        12px;
+  --bracket-weight:      1.5px;
+}

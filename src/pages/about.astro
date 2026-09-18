@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="關於我們"
+  description="認識亞東科技大學無人機研究社 — 跨年級、跨領域的工程研究團隊。EST. 2026 · YEAR 01"
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">ABOUT</p>
+      <h1 class="page-header__title">關於我們</h1>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       WHO WE ARE
+       ===================================================== -->
+  <section class="section border-bottom">
+    <div class="container">
+      <div class="content-block">
+
+        <span class="eyebrow">WHO WE ARE</span>
+        <h2 class="content-block__heading">我們是誰</h2>
+
+        <div class="content-block__body">
+          <p>
+            亞東科技大學無人機研究社是一個由研究生與大學生共同組成的工程研究團隊，
+            成員來自不同科系與年級，以工程組別為核心協作單位。
+          </p>
+          <p>
+            這不是一般的課外社團，而是一個以研究與實作為導向的技術團隊。
+            我們的組織結構以技術專長為主，而非以年級或科系劃分。
+          </p>
+        </div>
+
+        <div class="team-tags" aria-label="團隊特性">
+          <span class="tag tag--default">跨年級</span>
+          <span class="tag tag--default">跨領域</span>
+          <span class="tag tag--default">研究導向</span>
+          <span class="tag tag--default">工程實作</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       WHY WE BUILD
+       ===================================================== -->
+  <section class="section border-bottom" style="background-color: var(--color-surface);">
+    <div class="container">
+      <div class="content-block">
+
+        <span class="eyebrow">WHY WE BUILD</span>
+        <h2 class="content-block__heading">為什麼做這件事</h2>
+
+        <div class="content-block__body">
+          <p>
+            無人機技術橫跨飛行控制、嵌入式系統、通訊工程與人工智慧，
+            是驗證跨領域工程能力最直接的載體。
+          </p>
+          <p>
+            我們相信，真正的工程學習發生在設計、失敗與重建的循環中。
+            這個團隊的存在，是為了創造一個讓學生能夠以工程師的方式思考與行動的環境。
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       YEAR 01
+       ===================================================== -->
+  <section class="section" style="background-color: var(--color-bg);">
+    <div class="container">
+      <div class="year01-block">
+
+        <div class="year01-block__mark" aria-hidden="true">
+          <span class="year01-block__number">01</span>
+          <span class="year01-block__sub">YEAR</span>
+        </div>
+
+        <div class="year01-block__content">
+          <span class="eyebrow">FOUNDING YEAR · EST. 2026</span>
+          <h2 class="content-block__heading">第一年</h2>
+          <div class="content-block__body">
+            <p>
+              2026年是本團隊的創立年份。目前的所有成員都是第一屆的成員，
+              正在共同奠定團隊的工程文化與技術基礎。
+            </p>
+            <p>
+              這個網站本身，也是 YEAR 01 的一部分紀錄。
+              我們沒有過去的歷史可以呈現——我們正在建立它。
+            </p>
+          </div>
+
+          <div class="year01-tags">
+            <span class="tag tag--year01">YEAR 01</span>
+            <span class="tag tag--default">EST. 2026</span>
+            <span class="tag tag--default">CYCLE 01</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .border-bottom { border-bottom: 1px solid var(--color-border); }
+
+  /* ---- Page header ---- */
+  .page-header {
+    padding-block: var(--space-12) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .page-header__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  /* ---- Content block ---- */
+  .content-block {
+    max-width: 640px;
+  }
+
+  .content-block__heading {
+    font-size: var(--text-2xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-2);
+  }
+
+  .content-block__body p {
+    font-size: var(--text-md);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-4);
+  }
+
+  .content-block__body p:last-child { margin-bottom: 0; }
+
+  .team-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+
+  /* ---- Year 01 block ---- */
+  .year01-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .year01-block__mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    padding-top: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .year01-block__number {
+    font-family: var(--font-mono);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: var(--weight-bold);
+    color: var(--color-border-dark);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .year01-block__sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+  }
+
+  .year01-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 639px) {
+    .year01-block {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .year01-block__mark {
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--space-3);
+    }
+    .year01-block__number { font-size: var(--text-3xl); }
+  }
+</style>

@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="活動紀錄"
+  description="AEUST Drone Research Team — YEAR 01 活動紀錄。EST. 2026"
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">LOG · YEAR 01 · EST. 2026 · CYCLE 01</p>
+      <h1 class="page-header__title">活動紀錄</h1>
+      <p class="page-header__desc">
+        從成立開始的即時紀錄。沒有過去的歷史——我們正在建立它。
+      </p>
+    </div>
+  </div>
+
+  <!-- Log entries -->
+  <section class="section">
+    <div class="container">
+
+      <div class="log-year-header">
+        <span class="log-year-header__rule" aria-hidden="true"></span>
+        <span class="log-year-header__label">YEAR 01 · 2026</span>
+        <span class="log-year-header__rule" aria-hidden="true"></span>
+      </div>
+
+      <!-- Empty state -->
+      <div class="log-empty">
+        <p class="log-empty__status">LOG / YEAR 01 RECORDS IN PROGRESS</p>
+        <p class="log-empty__note">
+          活動紀錄建置中。紀錄將依時間序列由最新至最早排列。
+        </p>
+      </div>
+
+      <!-- Log entries will be rendered here once data exists.
+           Structure reference for future population:
+
+      <ol class="log-list" role="list">
+        <li class="log-entry">
+          <time class="log-entry__date" datetime="2026-XX-XX">2026.XX.XX</time>
+          <div class="log-entry__content">
+            <h2 class="log-entry__title">[Entry Title]</h2>
+            <p class="log-entry__desc">[One-line description]</p>
+          </div>
+        </li>
+      </ol>
+      -->
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ---- Page header ---- */
+  .page-header {
+    padding-block: var(--space-12) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .page-header__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__desc {
+    font-size: var(--text-md);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* ---- Year header divider ---- */
+  .log-year-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+
+  .log-year-header__rule {
+    display: block;
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+  }
+
+  .log-year-header__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+  }
+
+  /* ---- Empty state ---- */
+  .log-empty {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-block: var(--space-12);
+  }
+
+  .log-empty__status {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .log-empty__note {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Future: log entries */
+  .log-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .log-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-6);
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border-light);
+    align-items: start;
+  }
+
+  .log-entry__date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+    padding-top: 4px;
+  }
+
+  .log-entry__title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .log-entry__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 639px) {
+    .log-entry {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+    }
+  }
+</style>

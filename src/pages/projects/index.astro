@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="專題計畫"
+  description="AEUST Drone Research Team — CYCLE 01 工程專題計畫"
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <p class="page-header__eyebrow">PROJECTS · CYCLE 01</p>
+      <h1 class="page-header__title">專題計畫</h1>
+      <p class="page-header__desc">
+        第一週期的工程計畫正在進行中。
+      </p>
+    </div>
+  </div>
+
+  <!-- Projects list -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Empty state -->
+      <div class="projects-empty">
+        <p class="projects-empty__status">PROJECTS / DATA PENDING</p>
+        <p class="projects-empty__note">
+          CYCLE 01 專題計畫資料建置中。計畫確立後將於此處更新。
+        </p>
+      </div>
+
+      <!-- Project cards will be rendered here once data exists.
+           Structure reference for future population:
+
+      <ul class="projects-grid" role="list">
+        <li class="project-card">
+          <div class="project-card__meta">
+            <span class="tag tag--default">[DOMAIN]</span>
+            <span class="tag tag--amber">[STATUS]</span>
+          </div>
+          <h2 class="project-card__title">[Project Title]</h2>
+          <p class="project-card__desc">[One-line description]</p>
+          <a href="/projects/[slug]" class="project-card__link">查看詳情 →</a>
+        </li>
+      </ul>
+      -->
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding-block: var(--space-12) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .page-header__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-header__desc {
+    font-size: var(--text-md);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Empty state */
+  .projects-empty {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .projects-empty__status {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .projects-empty__note {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  /* Future: project card grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .project-card {
+    border: 1px solid var(--color-border);
+    padding: var(--space-6);
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: border-color var(--transition-base);
+  }
+
+  .project-card:hover {
+    border-color: var(--color-border-dark);
+  }
+
+  .project-card__meta {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .project-card__title {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .project-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+    flex: 1;
+    margin: 0;
+  }
+
+  .project-card__link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-top: auto;
+  }
+
+  .project-card__link:hover { text-decoration: underline; }
+</style>

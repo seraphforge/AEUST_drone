@@ -1,0 +1,130 @@
+---
+/**
+ * BaseLayout.astro
+ * Root layout for all pages.
+ * Handles: <head>, global CSS, font loading, NavBar, Footer.
+ */
+import NavBar from '../components/nav/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/fonts.css';
+import '../styles/utilities.css';
+
+interface Props {
+  /** Page <title> — will be suffixed with site name */
+  title?: string;
+  /** Meta description */
+  description?: string;
+  /** OG image URL (absolute) */
+  ogImage?: string;
+  /** Canonical URL */
+  canonicalUrl?: string;
+  /** Whether to show the NavBar */
+  showNav?: boolean;
+  /** Whether to show the Footer */
+  showFooter?: boolean;
+  /** Body class additions */
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description = '亞東科技大學無人機研究社 — 跨年級 × 跨領域 × 研究導向的無人機團隊',
+  ogImage,
+  canonicalUrl,
+  showNav = true,
+  showFooter = true,
+  bodyClass = '',
+} = Astro.props;
+
+const siteName = '亞東科技大學無人機研究社';
+const pageTitle = title ? `${title} — ${siteName}` : siteName;
+const siteUrl = import.meta.env.SITE ?? '';
+const canonical = canonicalUrl ?? (siteUrl + Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content={siteName} />
+    <meta property="og:title"       content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:title"       content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Google Fonts — preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Fonts:
+      - Noto Sans TC   400, 500, 700, 900 → ZH headings + body
+      - Inter          400, 500, 700, 800 → EN / labels / UI
+      - JetBrains Mono 400, 500           → monospaced / metadata
+    -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- Scroll-fade observer — loaded inline to avoid FOUC on first paint -->
+    <script is:inline>
+      // Defer to after DOM ready; defined here to avoid
+      // flash of invisible content on fast connections.
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 }
+        );
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      });
+    </script>
+  </head>
+
+  <body class={bodyClass}>
+    <div class="page-wrapper">
+
+      {showNav && (
+        <NavBar currentPath={Astro.url.pathname} />
+      )}
+
+      <main class="page-main" id="main-content" tabindex="-1">
+        <slot />
+      </main>
+
+      {showFooter && (
+        <Footer />
+      )}
+
+    </div>
+  </body>
+</html>

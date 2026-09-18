@@ -1,0 +1,277 @@
+---
+/**
+ * NavBar.astro
+ * Primary navigation — 5 links: ABOUT PROJECTS TEAM LOG JOIN
+ * Brand links back to home.
+ */
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
+  { href: '/about',    label: 'ABOUT'    },
+  { href: '/projects', label: 'PROJECTS' },
+  { href: '/team',     label: 'TEAM'     },
+  { href: '/log',      label: 'LOG'      },
+  { href: '/join',     label: 'JOIN'     },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<header class="navbar" role="banner">
+  <div class="navbar__inner container">
+
+    <!-- Brand -->
+    <a href="/" class="navbar__brand" aria-label="AEUST Drone Research Team — 回到首頁">
+      <span class="navbar__brand-mark" aria-hidden="true">▲</span>
+      <span class="navbar__brand-name">AEUST</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="navbar__nav" aria-label="主要導覽">
+      <ul class="navbar__links" role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['navbar__link', { 'is-active': isActive(link.href) }]}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Mobile toggle -->
+    <button
+      class="navbar__toggle"
+      id="mobile-menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="開啟選單"
+    >
+      <span class="toggle-bar" aria-hidden="true"></span>
+      <span class="toggle-bar" aria-hidden="true"></span>
+      <span class="toggle-bar" aria-hidden="true"></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" hidden>
+    <div class="container">
+      <nav aria-label="行動版導覽">
+        <ul class="mobile-menu__list" role="list">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={['mobile-menu__link', { 'is-active': isActive(link.href) }]}
+                aria-current={isActive(link.href) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  /* Brand */
+  .navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .navbar__brand:hover { text-decoration: none; }
+
+  .navbar__brand-mark {
+    font-size: 0.75rem;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .navbar__brand-name {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-primary);
+  }
+
+  /* Desktop nav */
+  .navbar__nav { flex: 1; display: flex; justify-content: flex-end; }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar__link {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+
+  .navbar__link:hover {
+    color: var(--color-primary);
+    background-color: var(--color-surface-alt);
+    text-decoration: none;
+  }
+
+  .navbar__link.is-active {
+    color: var(--color-accent);
+  }
+
+  /* Mobile toggle */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    padding: var(--space-2);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .toggle-bar {
+    display: block;
+    height: 1px;
+    background-color: var(--color-text-secondary);
+    border-radius: 1px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+    transform-origin: center;
+  }
+
+  .navbar__toggle[aria-expanded="true"] .toggle-bar:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+  }
+  .navbar__toggle[aria-expanded="true"] .toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar__toggle[aria-expanded="true"] .toggle-bar:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    padding-block: var(--space-4);
+  }
+
+  .mobile-menu__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-menu__link {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border-light);
+    transition: color var(--transition-fast);
+  }
+
+  .mobile-menu__link:hover,
+  .mobile-menu__link.is-active {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .navbar__nav    { display: none; }
+    .navbar__toggle { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      menu.setAttribute('aria-hidden', String(isOpen));
+      menu.hidden = isOpen;
+      toggle.setAttribute('aria-label', isOpen ? '開啟選單' : '關閉選單');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        menu.hidden = true;
+        toggle.setAttribute('aria-label', '開啟選單');
+        toggle.focus();
+      }
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.setAttribute('aria-hidden', 'true');
+        menu.hidden = true;
+        toggle.setAttribute('aria-label', '開啟選單');
+      });
+    });
+  }
+</script>

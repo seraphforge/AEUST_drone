@@ -1,0 +1,258 @@
+---
+/**
+ * projects/[slug].astro
+ * Project detail page — structural template shell.
+ * To be populated via Content Collections in a future phase.
+ *
+ * This file serves as a working route and visual template.
+ * No fake project data is included.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Static paths: empty for now — no projects exist yet.
+// When Content Collections are added, replace with:
+//   export async function getStaticPaths() { ... }
+export function getStaticPaths() {
+  return [];
+}
+
+// Props will come from Content Collection entries in Phase 3.
+// Typed loosely here to keep the shell buildable.
+interface Props {
+  slug?: string;
+}
+---
+
+<BaseLayout
+  title="專題計畫"
+  description="AEUST Drone Research Team — 專題計畫詳情"
+>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <a href="/projects" class="back-link">← PROJECTS</a>
+      <div class="project-header">
+        <div class="project-header__meta">
+          <span class="tag tag--default">[DOMAIN]</span>
+          <span class="tag tag--amber">進行中</span>
+        </div>
+        <h1 class="project-header__title">[Project Title]</h1>
+        <p class="project-header__id label-id">CYCLE 01 · #PROJECT-ID</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-body">
+    <div class="container">
+      <div class="project-layout">
+
+        <!-- Main content -->
+        <main class="project-main">
+
+          <section class="project-section">
+            <h2 class="project-section__heading">
+              <span class="eyebrow">OVERVIEW</span>
+              計畫概要
+            </h2>
+            <div class="project-content">
+              <!-- Content from markdown/MDX slot here -->
+              <p class="pending">[ 計畫說明建置中 ]</p>
+            </div>
+          </section>
+
+          <section class="project-section">
+            <h2 class="project-section__heading">
+              <span class="eyebrow">ENGINEERING</span>
+              技術細節
+            </h2>
+            <div class="project-content">
+              <p class="pending">[ 技術細節建置中 ]</p>
+            </div>
+          </section>
+
+          <section class="project-section">
+            <h2 class="project-section__heading">
+              <span class="eyebrow">MEDIA</span>
+              圖表 / 影像
+            </h2>
+            <div class="media-placeholder">
+              <span class="media-placeholder__label">MEDIA / PENDING</span>
+            </div>
+          </section>
+
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="project-sidebar">
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-block__heading">STATUS</h3>
+            <span class="tag tag--amber">進行中</span>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-block__heading">DOMAIN</h3>
+            <p class="sidebar-block__value pending">[ 待確認 ]</p>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-block__heading">CYCLE</h3>
+            <p class="sidebar-block__value">CYCLE 01 · 2026</p>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-block__heading">TEAM</h3>
+            <p class="sidebar-block__value pending">TEAM / DATA PENDING</p>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>
+
+<style>
+  /* ---- Page header ---- */
+  .page-header {
+    padding-block: var(--space-10) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+    transition: color var(--transition-fast);
+  }
+
+  .back-link:hover { color: var(--color-accent); text-decoration: none; }
+
+  .project-header__meta {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .project-header__id {
+    margin: 0;
+  }
+
+  /* ---- Body layout ---- */
+  .project-body {
+    padding-block: var(--space-12);
+    background-color: var(--color-bg);
+  }
+
+  .project-layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  @media (max-width: 1023px) {
+    .project-layout {
+      grid-template-columns: 1fr;
+    }
+    .project-sidebar {
+      order: -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--space-4);
+    }
+  }
+
+  /* ---- Main sections ---- */
+  .project-section {
+    padding-bottom: var(--space-10);
+    margin-bottom: var(--space-10);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .project-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .project-section__heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .project-content p {
+    font-size: var(--text-md);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+  }
+
+  .pending {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted) !important;
+  }
+
+  /* Media placeholder */
+  .media-placeholder {
+    border: 1px dashed var(--color-border-dark);
+    padding: var(--space-12) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-placeholder__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+  }
+
+  /* ---- Sidebar ---- */
+  .project-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    position: sticky;
+    top: calc(56px + var(--space-6));
+  }
+
+  .sidebar-block {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+  }
+
+  .sidebar-block__heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+    font-weight: var(--weight-regular);
+  }
+
+  .sidebar-block__value {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+</style>
